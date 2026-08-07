@@ -1,2 +1,5 @@
-notification
+# A barra inicial ancora o padrão na raiz. Sem ela, "notification" casaria qualquer caminho
+# com esse nome — inclusive cmd/notification/, que deixou de ser versionado e quebrava o
+# docker build no CI.
+/notification
 coverage.out
