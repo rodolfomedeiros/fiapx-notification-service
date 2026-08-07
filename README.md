@@ -158,7 +158,14 @@ go test ./...
 e envio do e-mail, política de reentrega e os endpoints de métricas. Os testes substituem
 `smtp.SendMail` por uma função de mentira, então não abrem conexão.
 
-O CI ainda roda `gofmt` e `go vet`.
+O CI ainda roda `gofmt`, `go vet` e um piso de **80% de cobertura** sobre `internal/`:
+
+```sh
+go test -coverprofile=coverage.out ./internal/... && go tool cover -func=coverage.out
+```
+
+`cmd/` fica de fora porque é só a fiação do processo; a decisão mora em `internal/`, hoje em
+97,5%. É o mesmo recorte que o `gear-up` faz ao excluir `drivers/` do JaCoCo.
 
 ## Contrato de eventos
 
